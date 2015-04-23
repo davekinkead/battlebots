@@ -15,6 +15,11 @@ class RandomBot < BattleBots::Bots::Bot
 
     # aim turret towards the first contact
     @aim = (@turret % 360) > attack_vector ? -1 : 1
+
+    # turn randomly
+    incr = rand() * 10
+    pole *= -1 if incr > 8
+    @turn += (pole * incr) 
   end
 
   def drive
@@ -24,11 +29,4 @@ class RandomBot < BattleBots::Bots::Bot
   def shoot
     true
   end
-
-  private
-
-  def attack(enemy)
-
-  end
-
 end
