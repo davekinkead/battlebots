@@ -1,14 +1,28 @@
-class Bot
+module BattleBots
+  module Bots
+    class Bot
 
-  def observe
-  end
+      attr_reader :name
 
-  def move
-  end
+      def observe
+        raise NotImplementedError.new
+      end
 
-  def aim
-  end
+      def turn
+        raise NotImplementedError.new
+      end
 
-  def shoot
+      def drive
+        raise NotImplementedError.new
+      end
+
+      def aim
+        raise NotImplementedError.new
+      end
+
+      def shoot
+        raise NotImplementedError.new
+      end
+    end
   end
 end
