@@ -23,6 +23,7 @@ class RandomBot < BattleBots::Bots::Bot
   end
 
   def shoot
+    true
   end
 
 end

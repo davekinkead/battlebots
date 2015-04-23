@@ -1,3 +1,5 @@
+require 'bullets'
+
 module BattleBots
   class Escort
 
@@ -14,10 +16,31 @@ module BattleBots
 
       @bot = RandomBot.new
       @name = @bot.name
+      @strength = 25
+
       @heading = 90
       @turret = 33
-      @health = rand() * 100
+      @health = 100
+      @ammo = 0
     end
+
+    def tick
+      @ammo += 1
+      observe
+      move
+      aim
+      shoot
+    end
+
+    def draw
+      @body_image.draw_rot(@x, @y, 1, @heading)
+      @turret_image.draw_rot(@x, @y, 1, @turret)
+      @font.draw("#{@bot.name}: #{@health.to_i}", @x - 50, @y + 25, 0, 1.0, 1.0, 0xffffff00)
+    end
+
+
+    private
+
 
     def observe
     end
@@ -49,13 +72,10 @@ module BattleBots
     end
 
     def shoot
-    end
-
-    def draw
-      @body_image.draw_rot(@x, @y, 1, @heading)
-      @turret_image.draw_rot(@x, @y, 1, @turret)
-      
-      @font.draw("#{@bot.name}: #{@health.to_i}", @x - 50, @y + 25, 0, 1.0, 1.0, 0xffffff00)
+      if @ammo > 0 && @bot.shoot
+        @ammo -= 50
+        @window.bullets << Bullet.new(@window, [@x, @y, @turret, Gosu::offset_x(@turret, @strength), Gosu::offset_x(@turret, @strength)])
+      end
     end
 
     def cap(value, limit)
