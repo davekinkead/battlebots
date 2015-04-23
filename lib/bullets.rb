@@ -9,12 +9,12 @@ module BattleBots
     end
 
     def decay
-      @vel_x *= 0.9
-      @vel_y *= 0.9
+      @vel_x *= 0.95
+      @vel_y *= 0.95
     end
 
     def decayed?
-      true if @vel_x.abs < 3 && @vel_y.abs < 3
+      true if @vel_x.abs < 5 && @vel_y.abs < 5
     end
 
     def move

@@ -6,7 +6,7 @@ require 'gosu'
 module BattleBots
   class Game < Gosu::Window
 
-    attr_accessor :bullets
+    attr_accessor :bullets, :players
 
     def initialize(x=1200, y=800, resize=false)
       super
@@ -15,15 +15,18 @@ module BattleBots
     end
 
     def update
-      @players.each do |player|
-        player.tick
-      end
-
       @bullets.each do |bullet|
         bullet.move
         bullet.decay
       end
-      @bullets.delete_if { |bullet| bullet.decayed? }
+      @bullets.delete_if { |bullet| bullet.decayed? }      
+
+      @players.each do |player|
+        player.hit? @bullets
+        player.tick
+      end
+      @players.delete_if { |player| player.dead? }
+
     end
 
     def draw

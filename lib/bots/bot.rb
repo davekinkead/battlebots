@@ -2,22 +2,23 @@ module BattleBots
   module Bots
     class Bot
 
-      attr_reader :name
+      attr_reader :name, :heading, :turn, :drive, :aim, :shoot
 
-      def observe
-        raise NotImplementedError.new
+      def observe(sensors)
+        @x = sensors[:x]
+        @y = sensors[:y]
+        @contacts = sensors[:contacts]
+        @health = sensors[:health]
+        @heading = sensors[:heading]
+        @turret = sensors[:turret]
       end
 
-      def turn
+      def plan
         raise NotImplementedError.new
       end
 
       # Returns a value between 0 and 1
       def drive
-        raise NotImplementedError.new
-      end
-
-      def aim
         raise NotImplementedError.new
       end
 
