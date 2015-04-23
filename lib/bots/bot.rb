@@ -13,7 +13,7 @@ module BattleBots
         @turret = sensors[:turret]
       end
 
-      def plan
+      def think
         raise NotImplementedError.new
       end
     end

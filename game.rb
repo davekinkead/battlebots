@@ -49,9 +49,9 @@ module BattleBots
     private
 
     def load_players(players=nil)
-      require 'escort'
-      require 'bots/random_bot'
-      @players = [Escort.new(self, CloseAndKill), Escort.new(self, CloseAndKill), Escort.new(self, CloseAndKill)]
+      require 'proxy'
+      require 'bots/close_and_kill'
+      @players = [Proxy.new(self, CloseAndKill), Proxy.new(self, CloseAndKill), Proxy.new(self, CloseAndKill)]
     end
   end
 end

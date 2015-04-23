@@ -1,7 +1,7 @@
 require 'bullets'
 
 module BattleBots
-  class Escort
+  class Proxy
 
     attr_reader :bot, :x, :y
 
@@ -14,20 +14,20 @@ module BattleBots
       @x, @y = window.width * rand(), window.height * rand()
       @x_vel = @y_vel = 0.0
 
-      @bot = RandomBot.new
+      @bot = CloseAndKill.new
       @name = @bot.name
       @speed, @strength, @stamina, @sight = 25, 25, 25, 25
+      @ammo = 0
 
       @heading = 90
       @turret = 33
       @health = 100
-      @ammo = 0
     end
 
     def tick
-      @ammo += 1
+      reload
       observe_battlespace
-      @bot.plan
+      query_bot
       move
       aim
       shoot
@@ -58,6 +58,13 @@ module BattleBots
 
     private
 
+    def reload
+      @ammo += 1
+    end
+
+    def query_bot
+      @bot.think
+    end
 
     def observe_battlespace
       battlespace = {x: @x, y: @y, health: @health, turret: @turret, heading: @heading, contacts: []}
