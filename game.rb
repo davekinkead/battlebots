@@ -38,7 +38,7 @@ module BattleBots
     def load_players(players=nil)
       require 'escort'
       require 'bots/random_bot'
-      @players = [Escort.new(self, RandomBot)]
+      @players = [Escort.new(self, RandomBot), Escort.new(self, RandomBot)]
     end
   end
 end

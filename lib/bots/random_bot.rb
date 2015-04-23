@@ -4,21 +4,22 @@ class RandomBot < BattleBots::Bots::Bot
 
   def initialize
     @name = "Random Bot"
+    @turn = rand() > 0.5 ? -1 : 1
   end
 
   def observe
   end
 
   def drive
-    0.8
+    1
   end
 
   def turn
-    -1
+    @turn
   end
 
   def aim
-    3
+    @turn * -3
   end
 
   def shoot

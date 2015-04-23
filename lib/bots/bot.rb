@@ -12,6 +12,7 @@ module BattleBots
         raise NotImplementedError.new
       end
 
+      # Returns a value between 0 and 1
       def drive
         raise NotImplementedError.new
       end
