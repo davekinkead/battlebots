@@ -2,15 +2,18 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'gosu'
+require 'players'
+
 
 module BattleBots
   class Game < Gosu::Window
+    include BattleBots::Players
 
     attr_accessor :bullets, :players
 
     def initialize(x=1200, y=800, resize=false)
       super
-      @players = load_players
+      @players = player_list
       @bullets = []
     end
 
@@ -23,7 +26,7 @@ module BattleBots
 
       @players.each do |player|
         player.hit? @bullets
-        player.tick
+        player.play
       end
       @players.delete_if { |player| player.dead? }
 
@@ -44,14 +47,6 @@ module BattleBots
 
     def button_down(id)
       close if id == Gosu::KbEscape
-    end
-
-    private
-
-    def load_players(players=nil)
-      require 'proxy'
-      require 'bots/close_and_kill'
-      @players = [Proxy.new(self, CloseAndKill), Proxy.new(self, CloseAndKill), Proxy.new(self, CloseAndKill)]
     end
   end
 end
