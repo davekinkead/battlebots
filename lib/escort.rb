@@ -72,7 +72,7 @@ module BattleBots
     end
 
     def move
-      @heading += @bot.turn
+      @heading += @bot.turn 
 
       vel = cap(@bot.drive, 1.0) * 0.25
 
@@ -99,7 +99,7 @@ module BattleBots
 
     def shoot
       if @ammo > 0 && @bot.shoot
-        @ammo -= 50
+        @ammo = -50
         @window.bullets << Bullet.new(@window, [@x, @y, @turret, Gosu::offset_x(@turret, @strength + @x_vel.abs), Gosu::offset_y(@turret, @strength + @y_vel.abs)])
       end
     end
