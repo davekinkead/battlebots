@@ -33,15 +33,15 @@ class TheCloser < BattleBots::Bots::Bot
   end
 
   def calculate_vector_to(enemy)
-    attack_bearing = (Math.atan2(enemy[1] - @y, enemy[0] - @x) / Math::PI * 180) + 90
-    attack_bearing = attack_bearing.abs if attack_bearing < 0
-    attack_distance = Math.sqrt((enemy[0] - @x).abs**2 + (enemy[1]-@y)**2)
-    [attack_bearing, attack_distance]
+    arctan = (Math.atan2(enemy[1] - @y, enemy[0] - @x) / Math::PI * 180)
+    bearing = arctan > 0 ? arctan + 90 : (arctan + 450) % 360
+    distance = Math.sqrt((enemy[0] - @x).abs**2 + (enemy[1]-@y)**2)
+    [bearing, distance]
   end
 
-  def aim_turret(attack_bearing, attack_distance)
-    @aim = (@turret % 360) > attack_bearing ? -1 : 1
-    @shoot = attack_distance < 500 ? true : false
+  def aim_turret(bearing, distance)
+    @aim = (@turret - bearing) % 360 > 180 ? 1 : -1
+    @shoot = distance < 500 ? true : false
   end
 
   def close_the_enemy(attack_bearing, attack_distance)
