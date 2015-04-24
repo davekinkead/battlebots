@@ -18,4 +18,9 @@ class TheBully < TheCloser
     target
   end
 
+  def close_the_enemy(bearing, distance)
+    @turn = (@heading - bearing) % 360 > 180 ? 1 : -1
+    @drive = distance < 100 ? 0 : 1
+  end
+
 end

@@ -44,19 +44,12 @@ class TheCloser < BattleBots::Bots::Bot
     @shoot = distance < 500 ? true : false
   end
 
-  def close_the_enemy(attack_bearing, attack_distance)
-    if (@heading % 360) > attack_bearing
-      @turn = (@heading % 360) - attack_bearing > 180 ? -1 : 1
-      @turn = (@heading % 360) - attack_bearing > 180 ? 1 : -1
-      @drive = 1
-    else
-      @turn = attack_bearing - (@heading % 360) > 180 ? 1 : -1
-      @turn = attack_bearing - (@heading % 360) > 180 ? -1 : 1
-      @drive = 0
-    end
+  def close_the_enemy(bearing, distance)
+    @turn = (@heading - bearing) % 360 > 180 ? 1 : -1
+    @drive = 1
 
     # veer off if getting too close
-    @turn = -1 if attack_distance < 150
+    @turn = -1 if distance < 200
   end
 
   def stand_by
