@@ -7,8 +7,7 @@ module BattleBots
   module Players
 
     def player_list
-      [
-        Proxy.new(self, TheCloser), 
+      [ Proxy.new(self, TheCloser), 
         Proxy.new(self, TheBully), 
         Proxy.new(self, TheChicken)]
     end
