@@ -98,6 +98,10 @@ To submit your bot:
 Happy hunting!
 
 
+## Credits
+
+Graphics have been wilfully plagiarised from Adam Williams' [rTanque](https://github.com/awilliams/RTanque)
+
 [gosu]: https://github.com/jlnr/gosu/
 
 
