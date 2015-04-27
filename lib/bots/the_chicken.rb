@@ -22,7 +22,7 @@ class TheChicken < TheCloser
 
   def run_away(bearing, distance)
     @drive = 1
-    @turn = (@heading % 360) > (bearing % 360) ? 1 : -1
+    @turn = (@heading % 360) >= (bearing % 360) ? 1 : -1
   end
 
 end

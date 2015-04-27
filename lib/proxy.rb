@@ -3,7 +3,7 @@ require 'bullets'
 module BattleBots
   class Proxy
 
-    attr_reader :bot, :x, :y, :health
+    attr_reader :bot, :x, :y, :health, :heading, :turret
 
     def initialize(window, name)
       set_environmentals window
@@ -76,7 +76,10 @@ module BattleBots
 
       @window.players.each do |enemy|
         unless @x == enemy.x && @y == enemy.y
-          battlespace[:contacts] << [enemy.x, enemy.y, enemy.health]
+          battlespace[:contacts] << {
+            x: enemy.x, y: enemy.y, 
+            health: enemy.health, 
+            heading: enemy.heading, turret: enemy.turret }
         end
       end
 
@@ -94,13 +97,13 @@ module BattleBots
       @x += @vel_x
       @y += @vel_y
 
-      # The world is flat but it has fences
+      # The world is flat but it has walls
       @x = 0 if @x < 0
       @y = 0 if @y < 0      
       @x = @window.width if @x > @window.width
       @y = @window.height if @y > @window.height
 
-      # Add velocity decay
+      # Add a velocity decay
       @vel_x *= 0.9
       @vel_y *= 0.9
     end

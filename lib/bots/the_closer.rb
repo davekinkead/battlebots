@@ -23,7 +23,7 @@ class TheCloser < BattleBots::Bots::Bot
   def select_target
     closest = target = nil
     @contacts.each do |contact|
-      attack_distance = Math.sqrt((contact[0] - @x).abs**2 + (contact[1]-@y)**2)
+      attack_distance = Math.sqrt((contact[:x] - @x).abs**2 + (contact[:y]-@y)**2)
       if closest.nil? || closest > attack_distance
         closest = attack_distance
         target = contact
@@ -33,9 +33,9 @@ class TheCloser < BattleBots::Bots::Bot
   end
 
   def calculate_vector_to(enemy)
-    arctan = (Math.atan2(enemy[1] - @y, enemy[0] - @x) / Math::PI * 180)
+    arctan = (Math.atan2(enemy[:y] - @y, enemy[:x] - @x) / Math::PI * 180)
     bearing = arctan > 0 ? arctan + 90 : (arctan + 450) % 360
-    distance = Math.sqrt((enemy[0] - @x).abs**2 + (enemy[1]-@y)**2)
+    distance = Math.sqrt((enemy[:x] - @x).abs**2 + (enemy[:y]-@y)**2)
     [bearing, distance]
   end
 

@@ -11,7 +11,7 @@ class TheBully < TheCloser
   def select_target
     target = nil
     @contacts.each do |contact|
-      if target.nil? || target[2] > contact[2]
+      if target.nil? || target[:health] > contact[:health]
         target = contact
       end
     end
