@@ -4,9 +4,9 @@
 
 The idea is simple enough: Code your bot; submit it; and battle it out.  But how do we do it exactly?  Let's have a look...
 
-The game is powered by the [Gosu gaming library][gosu]. The first thing you'll need to do is install that gem and it's C dependencies.
+The game is powered by the [Gosu gaming library][gosu]. The first thing you'll need to do is install that gem and its C dependencies.
 
-Gosu gives us all the fancy GUI and gaming geometry tools we'll need and it's high level API is dead easy.  Just extend `Gosu::Window`, call `super` in your `#initialize` method, and implement the `#update` -> `#draw` -> `#button_up` -> `#button_down` loop.  The loop will run every 16.667 milliseconds and allows for silky smoth animation as the screen is updated at 60 fps.
+Gosu gives us all the fancy GUI and gaming geometry tools we'll need and its high level API is dead easy.  Just extend `Gosu::Window`, call `super` in your `#initialize` method, and implement the `#update` -> `#draw` -> `#button_up` -> `#button_down` loop.  The loop will run every 16.667 milliseconds and allows for silky smoth animation as the screen is updated at 60 fps.
 
 Here's the shell of game that we execute by calling `ruby game.rb` from the CLI.
 
@@ -46,7 +46,7 @@ To make a bot, simply extend the `Bot` class and implement the required methods.
 
 Think of your bot as a brain.  In normal object oriented game code, your bot would be doing most of the work. The Game object would be calling Bot methods and the bot itself would be keeping track of state.
 
-But this is a competitive endeavour and programmers can't be trusted!  So rather than allowing your bot to track state and take actions, your bot will signal it's intentions to a Proxy which which will query your bot's wants, track state, and enforce the game rules.
+But this is a competitive endeavour and programmers can't be trusted!  So rather than allowing your bot to track state and take actions, your bot will signal its intentions to a Proxy which which will query your bot's wants, track state, and enforce the game rules.
 
 Every tick of the game (60 times per second), the proxy will inform your bot about the battlespace by calling `bot.observe`.  This give your information on your current position, health, heading, and turret heading, for you as well as the other competitors.
 
