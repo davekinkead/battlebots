@@ -22,5 +22,4 @@ class TheBully < TheCloser
     @turn = (@heading - bearing) % 360 > 180 ? 1 : -1
     @drive = distance < 100 ? 0 : 1
   end
-
 end
