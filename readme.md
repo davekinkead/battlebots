@@ -4,7 +4,7 @@
 
 The idea is simple enough: Code your bot; submit it; and battle it out.  But how do we do it exactly?  Let's have a look...
 
-The game is powered by the [Gosu gaming library][gosu]. The first thing you'll need to do is install that gem and its C dependencies.
+The game is powered by the [Gosu gaming library][gosu]. The first thing you'll need to do is install Gosu's C dependencies. You can do this using homebrew via `$ brew install sdl2 libogg libvorbis`. After doing that, run `bundle install`.
 
 Gosu gives us all the fancy GUI and gaming geometry tools we'll need and its high level API is dead easy.  Just extend `Gosu::Window`, call `super` in your `#initialize` method, and implement the `#update` -> `#draw` -> `#button_up` -> `#button_down` loop.  The loop will run every 16.667 milliseconds and allows for silky smoth animation as the screen is updated at 60 fps.
 
