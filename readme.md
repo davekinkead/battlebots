@@ -4,7 +4,7 @@
 
 The idea is simple enough: Code your bot; submit it; and battle it out.  But how do we do it exactly?  Let's have a look...
 
-The game is powered by the [Gosu gaming library][gosu]. The first thing you'll need to do is install that gem and its C dependencies.
+The game is powered by the [Gosu gaming library][gosu]. The first thing you'll need to do is install Gosu's C dependencies. You can do this using homebrew via `$ brew install sdl2 libogg libvorbis`. After doing that, run `bundle install`.
 
 Gosu gives us all the fancy GUI and gaming geometry tools we'll need and its high level API is dead easy.  Just extend `Gosu::Window`, call `super` in your `#initialize` method, and implement the `#update` -> `#draw` -> `#button_up` -> `#button_down` loop.  The loop will run every 16.667 milliseconds and allows for silky smoth animation as the screen is updated at 60 fps.
 
@@ -42,7 +42,7 @@ Here's the shell of game that we execute by calling `ruby game.rb` from the CLI.
 
 ## Building a Bot
 
-To make a bot, simply extend the `Bot` class and implement the required methods.  
+To make a bot, simply extend the `Bot` class and implement the required methods.
 
 Think of your bot as a brain.  In normal object oriented game code, your bot would be doing most of the work. The Game object would be calling Bot methods and the bot itself would be keeping track of state.
 
@@ -56,7 +56,7 @@ So what intentions can your bot signal?
     attr_reader :name, :turn, :drive, :aim, :shoot
 
 
-You set your name as well as your skill matrix in the `#initialize` method.  The remainder are signalled in the `#think` method. 
+You set your name as well as your skill matrix in the `#initialize` method.  The remainder are signalled in the `#think` method.
 
   - `@turn` is a value of +1 to turn clockwise, -1 to turn anti-clockwise, or 0 to maintain direction.
 
@@ -108,7 +108,7 @@ Graphics have been wilfully plagiarised from Adam Williams' [rTanque](https://gi
 ## Todo before the next meetup
 
   - add intention checks
-  - add autoloader  
+  - add autoloader
   - add explosions
   - add virtue enhancement
   - allocate to starting corners
