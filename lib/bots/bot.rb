@@ -8,7 +8,7 @@ module BattleBots
         # Give your bot a name
         #
         # Then select your skill matrix
-        @speed = @strength = @stamina = @sight = 0.25
+        @speed = @strength = @stamina = @sight = 25
         raise NotImplementedError.new "You must impement a #new method"
       end
 
@@ -35,7 +35,7 @@ module BattleBots
       end 
 
       def skill_profile
-        [@speed, @strength, @stamina, @sight]
+        [@speed || 25, @strength || 25, @stamina || 25, @sight || 25]
       end   
 
       private
@@ -78,6 +78,7 @@ module BattleBots
         end
 
       def stand_by
+        @aim = 0
         @drive = 0
         @turn = 0
         @shoot = false

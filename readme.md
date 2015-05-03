@@ -71,17 +71,17 @@ The specifics of how you implement `#think` is entirely up to you.  I've include
 
 ## Skill Set
 
-Your bot also contain a skill set representing relative virtues of `@speed`, `@strength`, `@stamina`, and `@sight`.  These virtues must sum to 1.0 and allow you to enhance some attributes at the expense of others.
+Your bot also contain a skill set representing relative virtues of `@speed`, `@strength`, `@stamina`, and `@sight`.  These virtues must sum to 100 and allow you to enhance some attributes at the expense of others.
 
   - `@speed` determines to how fast your bot can move.
 
   - `@strength` increases bullet velocity and firepower.
 
-  - `@stamina` aids your ability to sustain damage.
+  - `@stamina` aids your ability to sustain damage. (TODO)
 
-  - `@sight` improves your battlespace awareness.
+  - `@sight` improves your battlespace awareness. (TODO)
 
-The Proxy will check that your virtues sum to 1.0 and will penalise values above this.  The default is 0.25 each.
+The Proxy will check that your virtues sum to 100 and will not allow values above this.  The default is 25 each.
 
 
 ## Submitting your bot
