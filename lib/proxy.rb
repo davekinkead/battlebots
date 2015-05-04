@@ -3,6 +3,8 @@ require 'bullets'
 module BattleBots
   class Proxy
 
+    MAGAZINE_CAPACITY = 5000
+
     attr_reader :bot, :x, :y, :health, :heading, :turret
 
     def initialize(window, name)
@@ -75,7 +77,7 @@ module BattleBots
     end
 
     def reload
-      @ammo += 1 if @ammo < 1
+      @ammo += 1 if @ammo < MAGAZINE_CAPACITY
     end
 
     def query_bot
