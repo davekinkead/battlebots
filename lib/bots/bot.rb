@@ -2,13 +2,15 @@ module BattleBots
   module Bots
     class Bot
 
+      DEFAULT_SKILL_LEVEL = 0.25
+
       attr_reader :name, :heading, :turn, :drive, :aim, :shoot
+
 
       def initialize
         # Give your bot a name
         #
         # Then select your skill matrix
-        @speed = @strength = @stamina = @sight = 25
         raise NotImplementedError.new "You must impement a #new method"
       end
 
@@ -35,7 +37,9 @@ module BattleBots
       end 
 
       def skill_profile
-        [@speed || 25, @strength || 25, @stamina || 25, @sight || 25]
+        [@speed, @strength, @stamina, @sight].map do |skill| 
+          skill ||= DEFAULT_SKILL_LEVEL
+        end
       end   
 
       private

@@ -10,12 +10,9 @@ module BattleBots
 
       @bot = name.new
       @name = @bot.name
-
-      @speed, @strength, @stamina, @sight = @bot.skill_profile
-      validate_skill_profile!
+      validate_skill_profile! @bot
 
       @ammo = 0
-
       @heading = 90
       @turret = 33
       @health = 100
@@ -54,12 +51,6 @@ module BattleBots
 
     private
 
-    def validate_skill_profile!
-      if @speed + @strength + @stamina + @sight > 100
-        raise NotImplementedError.new "Sum of skills cannot exceed 100"
-      end
-    end
-
     def set_environmentals(window)
       @window = window
       @body_image = Gosu::Image.new(window, "media/body.png")
@@ -68,6 +59,18 @@ module BattleBots
 
       @x, @y = window.width * rand(), window.height * rand()
       @vel_x = @vel_y = 0.0
+    end
+
+    def validate_skill_profile!(bot)
+      skill_total = apply_dirty_cheater_penalty bot.skill_profile
+      mad_skills = bot.skill_profile.map { |skill| skill / skill_total }
+      @speed, @strength, @stamina, @sight = mad_skills
+    end
+
+    def apply_dirty_cheater_penalty(mad_skills)
+      total = mad_skills.map(&:to_f).reduce(:+)
+      total *= 1.5 if total > 100
+      total
     end
 
     def reload
@@ -98,7 +101,7 @@ module BattleBots
     def move_bot
       @heading += @bot.turn 
 
-      vel = cap(@bot.drive, 1.0) * (@speed / 100.0)
+      vel = cap(@bot.drive, 1.0) * @speed
 
       @vel_x += Gosu::offset_x(@heading, vel)
       @vel_y += Gosu::offset_y(@heading, vel)
