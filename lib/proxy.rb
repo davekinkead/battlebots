@@ -12,10 +12,10 @@ module BattleBots
       @name = @bot.name
       validate_skill_profile! @bot
 
-      @ammo = 0
-      @heading = 90
-      @turret = 33
       @health = 100
+      @ammo = 0
+      @heading = rand() * 360
+      @turret = rand() * 360
     end
 
     def play
