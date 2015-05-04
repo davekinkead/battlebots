@@ -30,7 +30,8 @@ module BattleBots
     def hit?(bullets)
       bullets.reject! do |bullet|
         if Gosu::distance(@x, @y, bullet.x, bullet.y) < 25
-          @health -= Math.sqrt( bullet.vel_x ** 2 + bullet.vel_y ** 2 ) * @stamina
+          impact = Math.sqrt( bullet.vel_x ** 2 + bullet.vel_y ** 2 ) * (1 - @stamina)
+          @health -= impact / 5
           true
         end
       end
@@ -99,9 +100,9 @@ module BattleBots
     end
 
     def move_bot
-      @heading += @bot.turn 
+      @heading += @bot.turn
 
-      vel = cap(@bot.drive, 1.0) * @speed
+      vel = limit(@bot.drive, 1.0) * @speed
 
       @vel_x += Gosu::offset_x(@heading, vel)
       @vel_y += Gosu::offset_y(@heading, vel)
@@ -121,18 +122,19 @@ module BattleBots
     end
 
     def aim_turret
-      @turret += @bot.aim
+      @turret += limit @bot.aim, @speed * 10
     end
 
     def fire!
       if @ammo > 0 && @bot.shoot
-        @ammo -=  (100 - @strength)
+        @ammo -= 50
         @window.bullets << Bullet.new(@window, [@x, @y, @turret, Gosu::offset_x(@turret, 100 * @strength + @vel_x.abs), Gosu::offset_y(@turret, 100 * @strength + @vel_y.abs)])
       end
     end
 
-    def cap(value, limit)
-      value = limit if value.abs > limit
+    def limit(value, limit)
+      value = limit if value > limit && limit > 0
+      value = limit if value < limit && limit < 0
       value
     end
   end
