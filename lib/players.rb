@@ -9,7 +9,7 @@ module BattleBots
     def player_list
       [ Proxy.new(self, TheCloser), 
         Proxy.new(self, TheBully), 
-        Proxy.new(self, TheChicken)]
+        Proxy.new(self, TheChicken)].shuffle
     end
   end
 end
