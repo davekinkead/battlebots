@@ -1,6 +1,6 @@
 module BattleBots
   class Bullet
-    attr_reader :x, :y
+    attr_reader :x, :y, :vel_x, :vel_y
 
     def initialize(window, vector)
       @window = window

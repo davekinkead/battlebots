@@ -14,8 +14,8 @@ module BattleBots
 
       @health = 100
       @ammo = 0
-      @heading = rand() * 360
-      @turret = rand() * 360
+      @heading = rand * 360
+      @turret = rand * 360
     end
 
     def play
@@ -30,7 +30,7 @@ module BattleBots
     def hit?(bullets)
       bullets.reject! do |bullet|
         if Gosu::distance(@x, @y, bullet.x, bullet.y) < 25
-          @health -= 10
+          @health -= Math.sqrt( bullet.vel_x ** 2 + bullet.vel_y ** 2 ) * @stamina
           true
         end
       end
@@ -74,7 +74,7 @@ module BattleBots
     end
 
     def reload
-      @ammo += 1
+      @ammo += 1 if @ammo < 1
     end
 
     def query_bot
@@ -126,8 +126,8 @@ module BattleBots
 
     def fire!
       if @ammo > 0 && @bot.shoot
-        @ammo = (100 - @strength) * -1
-        @window.bullets << Bullet.new(@window, [@x, @y, @turret, Gosu::offset_x(@turret, @strength + @vel_x.abs), Gosu::offset_y(@turret, @strength + @vel_y.abs)])
+        @ammo -=  (100 - @strength)
+        @window.bullets << Bullet.new(@window, [@x, @y, @turret, Gosu::offset_x(@turret, 100 * @strength + @vel_x.abs), Gosu::offset_y(@turret, 100 * @strength + @vel_y.abs)])
       end
     end
 
