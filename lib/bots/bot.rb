@@ -65,7 +65,7 @@ module BattleBots
 
       def aim_turret(bearing, distance)
         @aim = (@turret - bearing) % 360 > 180 ? 1 : -1
-        @shoot = distance < 500 ? true : false
+        @shoot = distance < 400 ? true : false
       end
 
       def close_the_enemy(bearing, distance)
