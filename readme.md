@@ -77,7 +77,7 @@ Your bot also contain a skill set representing relative virtues of `@speed`, `@s
 
   - `@strength` increases bullet velocity and firepower.
 
-  - `@stamina` aids your ability to sustain damage. (TODO)
+  - `@stamina` aids your ability to sustain damage.
 
   - `@sight` improves your peripheral vision.
 
