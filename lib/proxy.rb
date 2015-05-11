@@ -91,14 +91,24 @@ module BattleBots
 
       @window.players.each do |enemy|
         unless @x == enemy.x && @y == enemy.y
-          battlespace[:contacts] << {
-            x: enemy.x, y: enemy.y, 
-            health: enemy.health, 
-            heading: enemy.heading, turret: enemy.turret }
+          if player_can_see? enemy
+            battlespace[:contacts] << {
+              x: enemy.x, y: enemy.y, 
+              health: enemy.health, 
+              heading: enemy.heading, turret: enemy.turret }
+          end
         end
       end
 
       @bot.observe battlespace
+    end
+
+    def player_can_see?(enemy)
+      arctan = (Math.atan2(enemy.y - @y, enemy.x - @x) / Math::PI * 180)
+      bearing = arctan > 0 ? arctan + 90 : (arctan + 450) % 360
+      lower_limit = (@turret - 180 * @sight) % 360
+      upper_limit = (@turret + 180 * @sight) % 360
+      true if (bearing - lower_limit) % 360 <= (upper_limit - lower_limit) % 360
     end
 
     def move_bot

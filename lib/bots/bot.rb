@@ -76,13 +76,13 @@ module BattleBots
         @turn = -1 if distance < 200
       end
 
-        def run_away(bearing, distance)
-          @drive = 1
-          @turn = (@heading % 360) >= (bearing % 360) ? 1 : -1
-        end
+      def run_away(bearing, distance)
+        @drive = 1
+        @turn = (@heading % 360) >= (bearing % 360) ? 1 : -1
+      end
 
       def stand_by
-        @aim = 0
+        @aim = 1
         @drive = 0
         @turn = 0
         @shoot = false

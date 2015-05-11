@@ -4,7 +4,6 @@ class TheBully < TheCloser
 
   def initialize
     @name = "The Bully"
-    @speed = 100
   end
 
   private

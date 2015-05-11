@@ -79,7 +79,7 @@ Your bot also contain a skill set representing relative virtues of `@speed`, `@s
 
   - `@stamina` aids your ability to sustain damage. (TODO)
 
-  - `@sight` improves your battlespace awareness. (TODO)
+  - `@sight` improves your peripheral vision.
 
 The Proxy will check that your virtues sum to 100 and will not allow values above this.  The default is 25 each.
 
