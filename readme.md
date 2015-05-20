@@ -107,8 +107,5 @@ Graphics have been wilfully plagiarised from Adam Williams' [rTanque](https://gi
 
 ## Todo before the next meetup
 
-  - add intention checks
   - add autoloader
   - add explosions
-  - add virtue enhancement
-  - allocate to starting corners

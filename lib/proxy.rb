@@ -134,7 +134,7 @@ module BattleBots
     end
 
     def aim_turret
-      @turret += limit @bot.aim, @speed * 10
+      @turret += limit(@bot.aim, @speed * 10)
     end
 
     def fire!
