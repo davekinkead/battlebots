@@ -9,12 +9,13 @@ module BattleBots
   class Game < Gosu::Window
     include BattleBots::Players
 
-    attr_accessor :bullets, :players
+    attr_accessor :bullets, :players, :explosions
 
     def initialize(x=1200, y=800, resize=false)
       super
       @players = player_list
       @bullets = []
+      @explosions = []
     end
 
     def update
@@ -33,12 +34,8 @@ module BattleBots
     end
 
     def draw
-      @players.each do |player|
-        player.draw
-      end
-
-      @bullets.each do |bullet|
-        bullet.draw
+      [@players, @bullets, @explosions].each do |drawable|
+        drawable.each { |item| item.draw } 
       end
     end
 

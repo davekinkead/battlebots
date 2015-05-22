@@ -1,4 +1,5 @@
 require 'bullets'
+require 'explosion'
 
 module BattleBots
   class Proxy
@@ -48,7 +49,10 @@ module BattleBots
     end
 
     def dead?
-      true if @health < 1
+      if @health < 1
+        @window.explosions << BattleBots::Explosion.new(@x, @y, @bang, @flames)
+        true
+      end
     end
 
 
@@ -59,7 +63,10 @@ module BattleBots
       @body_image = Gosu::Image.new(window, "media/body.png")
       @turret_image = Gosu::Image.new(window, "media/turret.png")
       @font = Gosu::Font.new(window, Gosu::default_font_name, 20)
-
+      @bang = Gosu::Sample.new(window, "media/bang.mp3")
+      @flames = BattleBots::Explosion.frames.map do |i| 
+        Gosu::Image.new(window, "media/explosions/explosion2-#{i}.png")
+      end
       @x, @y = window.width * rand(), window.height * rand()
       @vel_x = @vel_y = 0.0
     end
@@ -112,7 +119,7 @@ module BattleBots
     end
 
     def move_bot
-      @heading += @bot.turn
+      @heading += (@bot.turn || 0)
 
       vel = limit(@bot.drive, 1.0) * @speed
 

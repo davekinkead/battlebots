@@ -100,7 +100,9 @@ Happy hunting!
 
 ## Credits
 
-Graphics have been wilfully plagiarised from Adam Williams' [rTanque](https://github.com/awilliams/RTanque)
+Graphics have been blatantly plagiarised from Adam Williams' [rTanque](https://github.com/awilliams/RTanque)
+
+Sounds by [Mike Koenig](http://soundbible.com/2075-RPG-Plus-Shrapnel.html)
 
 [gosu]: https://github.com/jlnr/gosu/
 
@@ -108,4 +110,3 @@ Graphics have been wilfully plagiarised from Adam Williams' [rTanque](https://gi
 ## Todo before the next meetup
 
   - add autoloader
-  - add explosions
