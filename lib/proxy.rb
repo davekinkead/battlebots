@@ -67,6 +67,7 @@ module BattleBots
       @flames = BattleBots::Explosion.frames.map do |i| 
         Gosu::Image.new(window, "media/explosions/explosion2-#{i}.png")
       end
+      @gun_sound = Gosu::Sample.new(@window, 'media/gun.wav')
       @x, @y = window.width * rand(), window.height * rand()
       @vel_x = @vel_y = 0.0
     end
@@ -120,8 +121,7 @@ module BattleBots
 
     def move_bot
       @heading += (@bot.turn || 0)
-
-      vel = limit(@bot.drive, 1.0) * @speed
+      vel = limit(@bot.drive || 0, 1.0) * @speed
 
       @vel_x += Gosu::offset_x(@heading, vel)
       @vel_y += Gosu::offset_y(@heading, vel)
@@ -147,7 +147,7 @@ module BattleBots
     def fire!
       if @ammo > 0 && @bot.shoot
         @ammo -= 50
-        @window.bullets << Bullet.new(@window, [@x, @y, @turret, Gosu::offset_x(@turret, 100 * @strength + @vel_x.abs), Gosu::offset_y(@turret, 100 * @strength + @vel_y.abs)])
+        @window.bullets << Bullet.new(@window, [@x, @y, @turret, Gosu::offset_x(@turret, 100 * @strength + @vel_x.abs), Gosu::offset_y(@turret, 100 * @strength + @vel_y.abs)], @gun_sound)
       end
     end
 

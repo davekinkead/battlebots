@@ -2,10 +2,11 @@ module BattleBots
   class Bullet
     attr_reader :x, :y, :vel_x, :vel_y
 
-    def initialize(window, vector)
+    def initialize(window, vector, sound)
       @window = window
       @x, @y, @angle, @vel_x, @vel_y = vector
       @image = Gosu::Image.new(@window, 'media/bullet.png', false)
+      sound.play 0.05
     end
 
     def decay
