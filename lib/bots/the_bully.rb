@@ -4,6 +4,7 @@ class TheBully < TheCloser
 
   def initialize
     @name = "The Bully"
+    @strength, @speed, @stamina, @sight = [40, 10, 40, 10]
   end
 
   private

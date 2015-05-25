@@ -30,12 +30,11 @@ module BattleBots
         player.play
       end
       @players.delete_if { |player| player.dead? }
-
     end
 
     def draw
-      [@players, @bullets, @explosions].each do |drawable|
-        drawable.each { |item| item.draw } 
+      [@players, @bullets, @explosions].each do |collection_of_drawables|
+        collection_of_drawables.each { |drawable| drawable.draw } 
       end
     end
 
