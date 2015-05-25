@@ -13,8 +13,8 @@ class DeathRoomba < BattleBots::Bots::Bot
     scan_for_enemy
     enemy = select_target
     if enemy
-      estimated_position = estimate_position(enemy)
-      bearing, distance = calculate_vector_to(estimated_position)
+      #estimated_position = estimate_position(enemy)
+      bearing, distance = calculate_vector_to(enemy)
       aim_turret(bearing, distance) if distance < 400
       @shoot = true if target_locked?(bearing, distance)
     else
@@ -51,8 +51,8 @@ class DeathRoomba < BattleBots::Bots::Bot
     target
   end
   def estimate_position(enemy)
-    velocity = 5 # hardcoded value for now
-    time = 1     # hardcoded valae for now
+    velocity = 25 # hardcoded value for now
+    time = 1     # hardcoded value for now
     radians = enemy[:heading] * Math::PI / 180
     { 
       x: enemy[:x] + velocity * time * Math.cos(radians),
@@ -68,10 +68,10 @@ class DeathRoomba < BattleBots::Bots::Bot
   def target_locked?(bearing, distance)
     turret = @turret % 360
     bearing = bearing % 360
-    (bearing - turret).abs < 1 && distance < 400
+    (bearing - turret).abs < 1 && distance < 350
   end
 
-  # EEDA: ENHANCED ENEMY DETECTION ALGORITHM
+  # ENHANCED ENEMY DETECTION ALGORITHM
   ROTATE_LEFT = -1
   ROTATE_RIGHT = 1
   def remember_last_turret_direction
