@@ -4,6 +4,7 @@ class TheChicken < TheCloser
 
   def initialize
     @name = "The Chicken"
+    @strength, @speed, @stamina, @sight = [25, 40, 30, 5]
   end
 
   def think
