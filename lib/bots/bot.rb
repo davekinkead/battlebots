@@ -4,7 +4,7 @@ module BattleBots
 
       DEFAULT_SKILL_LEVEL = 0.25
 
-      attr_reader :name, :heading, :turn, :drive, :aim, :shoot
+      attr_reader :name, :heading, :turn, :drive, :aim, :shoot, :sound
 
 
       def initialize
@@ -26,7 +26,9 @@ module BattleBots
         raise NotImplementedError.new "You must implement a #think method"
       end
 
-      def play_sounds; end
+      def play_sounds
+        false
+      end
 
       def observe(sensors)
         @x = sensors[:x]

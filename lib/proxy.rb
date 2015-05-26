@@ -19,6 +19,8 @@ module BattleBots
       @ammo = 0
       @heading = rand * 360
       @turret = rand * 360
+      track = @bot.sound || 'media/ow.wav'
+      @sound = Gosu::Sample.new(@window, track)
     end
 
     def play
@@ -94,9 +96,7 @@ module BattleBots
     end
 
     def play_sounds
-      if @bot.play_sounds
-        Gosu::Sample.new(@window, @bot.play_sounds).play 1
-      end
+      @sound.play if @bot.play_sounds
     end
 
     def observe_battlespace
