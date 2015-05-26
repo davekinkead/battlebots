@@ -5,6 +5,7 @@ require 'bots/the_chicken'
 require 'bots/the_thinker'
 require 'bots/hackling'
 require 'bots/self_destructo'
+require 'bots/spray_and_pray'
 
 module BattleBots
   module Players
@@ -15,7 +16,8 @@ module BattleBots
         Proxy.new(self, Hackling),
         Proxy.new(self, SelfDestructo),
         Proxy.new(self, TheThinker),
-        Proxy.new(self, TheChicken)].shuffle
+        Proxy.new(self, SprayAndPray),
+        Proxy.new(self, TheChicken)].sample 4
     end
   end
 end
