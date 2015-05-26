@@ -19,7 +19,7 @@ module BattleBots
         Proxy.new(self, DeathRoomba),
         Proxy.new(self, TheThinker),
         Proxy.new(self, SprayAndPray),
-        Proxy.new(self, TheCheat),
+        #Proxy.new(self, TheCheat),
         Proxy.new(self, TheChicken)
       ].shuffle
     end
