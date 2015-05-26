@@ -28,6 +28,7 @@ module BattleBots
       move_bot
       aim_turret
       fire!
+      play_sounds
     end
 
     def hit?(bullets)
@@ -90,6 +91,12 @@ module BattleBots
 
     def query_bot
       @bot.think
+    end
+
+    def play_sounds
+      if @bot.play_sounds
+        Gosu::Sample.new(@window, @bot.play_sounds).play 1
+      end
     end
 
     def observe_battlespace
