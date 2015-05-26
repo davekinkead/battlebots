@@ -9,6 +9,7 @@ require 'bots/self_destructo'
 require 'bots/spray_and_pray'
 require 'bots/death_roomba'
 require 'bots/the_cheat'
+#require 'bots/the_troublemaker'
 
 module BattleBots
   module Players
@@ -22,6 +23,7 @@ module BattleBots
         Proxy.new(self, TheWhinger),
         Proxy.new(self, TheThinker),
         Proxy.new(self, SprayAndPray),
+        #Proxy.new(self, TheTroublemaker),
         #Proxy.new(self, TheCheat),
         Proxy.new(self, TheChicken)
       ].shuffle
