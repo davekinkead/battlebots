@@ -16,7 +16,6 @@ module BattleBots
       @players = player_list
       @bullets = []
       @explosions = []
-      @winning = Gosu::Sample.new(self, "media/you-win.mp3")
       @winner_played = false
       @font = Gosu::Font.new(self, Gosu::default_font_name, 200)
     end
@@ -57,7 +56,7 @@ module BattleBots
     def display_winner(proxy)
       @font.draw("WINNER!", 200, 300, 0, 1.0, 1.0, 0xffffff00)
       unless @winner_played
-        @winning.play
+        Gosu::Sample.new(self, "media/you-win.mp3").play
         @winner_played = true
       end
     end
