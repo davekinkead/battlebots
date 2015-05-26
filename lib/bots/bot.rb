@@ -25,7 +25,8 @@ module BattleBots
         # The intentions to update are turn (+1 or -1)
         raise NotImplementedError.new "You must implement a #think method"
       end
-      
+
+      def play_sounds; end
 
       def observe(sensors)
         @x = sensors[:x]
