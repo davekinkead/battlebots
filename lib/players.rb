@@ -6,6 +6,7 @@ require 'bots/the_thinker'
 require 'bots/hackling'
 require 'bots/self_destructo'
 require 'bots/spray_and_pray'
+require 'bots/death_roomba'
 
 module BattleBots
   module Players
@@ -14,10 +15,11 @@ module BattleBots
       [ Proxy.new(self, TheCloser), 
         Proxy.new(self, TheBully),
         Proxy.new(self, Hackling),
-        Proxy.new(self, SelfDestructo),
+        Proxy.new(self, DeathRoomba),
         Proxy.new(self, TheThinker),
         Proxy.new(self, SprayAndPray),
         Proxy.new(self, TheChicken)].sample 4
+
     end
   end
 end
