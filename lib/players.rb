@@ -19,7 +19,6 @@ module BattleBots
         Proxy.new(self, TheThinker),
         Proxy.new(self, SprayAndPray),
         Proxy.new(self, TheChicken)].sample 4
-
     end
   end
 end
